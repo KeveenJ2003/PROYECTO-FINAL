@@ -6,12 +6,15 @@
     <title>Dashboard UTC | Proyecto Power BI</title>
     <style>
       :root {
-        --utc-azul: #003366;
-        --utc-celeste: #0099cc;
-        --utc-gris: #f1f4f8;
+        --utc-blue-light: #1f98f1;
+        --utc-blue-dark: #026fc4;
+        --utc-blue-deep: #0c2f5f;
+        --utc-surface: #ffffff;
+        --utc-surface-alt: #f5f7fb;
+        --utc-text: #333333;
+        --utc-muted: #666666;
         --utc-blanco: #ffffff;
-        --utc-oscuro: #1a1a1a;
-        --utc-acento: #ffcc00;
+        --utc-gris: #f1f4f8;
       }
 
       * {
@@ -21,16 +24,16 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
-        color: var(--utc-oscuro);
+        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+        background: #eef4fb;
+        color: var(--utc-text);
         line-height: 1.6;
       }
 
       .page-wrapper {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 24px;
+        padding: 20px 18px 32px;
       }
 
       header {
@@ -39,100 +42,87 @@
         align-items: center;
         justify-content: space-between;
         gap: 18px;
-        padding: 20px 24px;
-        background: var(--utc-azul);
-        border-radius: 18px;
-        color: var(--utc-blanco);
+        padding: 28px 28px 24px;
+        background: linear-gradient(135deg, var(--utc-blue-light), var(--utc-blue-dark));
+        border-radius: 24px;
+        color: var(--utc-surface);
+        box-shadow: 0 24px 50px rgba(2, 111, 196, 0.18);
       }
 
       .brand {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
-        gap: 16px;
+        gap: 18px;
+        width: 100%;
       }
 
       .brand-logo {
-        min-width: 72px;
-        min-height: 72px;
+        min-width: 90px;
+        min-height: 90px;
         display: grid;
         place-items: center;
-        border-radius: 18px;
-        background: var(--utc-celeste);
-        color: var(--utc-blanco);
-        font-size: 1.6rem;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        padding: 14px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.18);
+        color: var(--utc-surface);
+        padding: 16px;
       }
 
       .brand-logo svg {
-        width: 48px;
-        height: 48px;
+        width: 52px;
+        height: 52px;
         display: block;
       }
 
       .brand-info h1 {
-        font-size: clamp(1.8rem, 2.5vw, 2.4rem);
-        margin-bottom: 8px;
+        font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+        line-height: 1.1;
+        margin-bottom: 10px;
       }
 
       .brand-info p {
-        font-size: 0.98rem;
+        font-size: 1rem;
         opacity: 0.92;
+      }
+
+      .logo-subtitle {
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.9;
+        margin-bottom: 6px;
+      }
+
+      .course-name {
+        font-size: 1rem;
+        color: #d0e8ff;
+        margin-top: 8px;
       }
 
       .tagline {
         font-size: 0.95rem;
         margin-top: 10px;
-        padding: 14px 18px;
-        border-radius: 14px;
-        background: rgba(255, 255, 255, 0.12);
-        max-width: 500px;
+        padding: 18px 22px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.16);
+        max-width: 580px;
+        color: var(--utc-surface);
       }
 
       .section-title {
         margin: 32px 0 18px;
-        font-size: 1.4rem;
-        color: var(--utc-azul);
+        font-size: 1.6rem;
+        color: var(--utc-blue-deep);
       }
 
-      .content-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .info-card {
-        padding: 24px;
-        border-radius: 20px;
-        background: var(--utc-blanco);
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.07);
-      }
-
-      .info-card h2 {
-        margin-bottom: 14px;
-        color: var(--utc-azul);
-      }
-
-      .info-card p {
-        color: #384154;
-        margin-bottom: 12px;
-      }
-
-      .info-list {
-        display: grid;
-        gap: 10px;
-        margin-top: 12px;
-      }
-
-      .info-list span {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 14px;
-        border-radius: 12px;
-        background: #f3f7fc;
-        color: #28364c;
+      .dashboard-frame {
+        position: relative;
+        width: 100%;
+        min-height: 620px;
+        overflow: hidden;
+        border-radius: 24px;
+        border: 1px solid rgba(0, 51, 102, 0.16);
+        background: var(--utc-gris);
       }
 
       .dashboard-frame {
@@ -149,7 +139,7 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, rgba(0, 153, 204, 0.12), transparent 40%);
+        background: linear-gradient(135deg, rgba(31, 152, 241, 0.14), transparent 40%);
         pointer-events: none;
       }
 
@@ -162,20 +152,22 @@
 
       .footer {
         margin-top: 24px;
-        padding: 18px 22px;
+        padding: 20px 24px;
         border-radius: 18px;
-        background: #eef4fb;
+        background: #ffffff;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
         gap: 14px;
-        color: #274060;
+        color: var(--utc-muted);
+        border: 1px solid #d6e7fb;
       }
 
       .footer span {
         display: inline-flex;
         align-items: center;
         gap: 10px;
+        margin: 0;
       }
 
       @media (min-width: 780px) {
@@ -208,49 +200,22 @@
       <header>
         <div class="brand">
           <div class="brand-logo" aria-label="Logo UTC">
-            <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="utcGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#00b4e5" />
-                  <stop offset="100%" stop-color="#003366" />
-                </linearGradient>
-              </defs>
-              <rect x="10" y="10" width="80" height="80" rx="18" fill="url(#utcGradient)" />
-              <path d="M33 68 L33 32 L45 32 C53 32 58 37 58 45 C58 53 53 58 45 58 L33 58 Z M45 42 L40 42 L40 54 L45 54 C49 54 52 51 52 47 C52 43 49 42 45 42 Z" fill="#fff" />
-            </svg>
+            <img
+              src="https://www.utc.edu.ec/Portals/0/2026/ENLACES/logo-planificacio%CC%81n.png?ver=2026-02-05-123623-197"
+              alt="Logo UTC"
+              style="width: 72px; height: auto; display: block;"
+            />
           </div>
           <div class="brand-info">
-            <h1>Universidad Tecnológica de Cuenca</h1>
-            <p>Centro de inteligencia y análisis de datos</p>
+            <p class="logo-subtitle">Universidad Técnica de Cotopaxi</p>
+            <h1>Maestría en Producción y Operaciones Industriales</h1>
+            <p class="course-name">Integración de Sistemas en la Industria 4.0</p>
           </div>
         </div>
         <div class="tagline">
-          Dashboard integrado con Power BI para el seguimiento estratégico de indicadores institucionales de la UTC.
+          Plataforma de apoyo académico con el informe Power BI integrado para análisis industrial y de operaciones.
         </div>
       </header>
-
-      <h2 class="section-title">Identidad visual y estructura organizativa</h2>
-      <div class="content-grid">
-        <article class="info-card">
-          <h2>Identidad corporativa UTC</h2>
-          <p>Este portal presenta la imagen institucional de la UTC con colores propios, tipografía moderna y una estructura limpia para potenciar la lectura de datos.</p>
-          <div class="info-list">
-            <span>Paleta de colores: Azul UTC, Celeste institucional, Blanco y Gris neutro</span>
-            <span>Tipografía: Segoe UI / Verdana / Sans-serif para claridad digital</span>
-            <span>Logo: Símbolo tipográfico UTC con contraste sobrio</span>
-          </div>
-        </article>
-
-        <article class="info-card">
-          <h2>Estructura organizativa</h2>
-          <p>La página está diseñada para ubicar el dashboard en un contenedor responsivo, manteniendo una jerarquía clara entre la identidad institucional y el análisis de datos.</p>
-          <div class="info-list">
-            <span>Cabecera principal con logotipo e identidad</span>
-            <span>Bloque informativo con visión y objetivos</span>
-            <span>Contenedor central para el informe Power BI</span>
-          </div>
-        </article>
-      </div>
 
       <h2 class="section-title">Dashboard Power BI UTC</h2>
       <div class="dashboard-frame">
@@ -262,9 +227,8 @@
       </div>
 
       <footer class="footer">
-        <span>UTC - Universidad Tecnológica de Cuenca</span>
-        <span>Informe integrado en Power BI</span>
-        <span>Contacto: comunicacion@utc.edu.ec | +593 7 123 4567</span>
+        <span>UTC - Universidad Técnica de Cotopaxi</span>
+        <span>Maestría en Producción y Operaciones Industriales • Integración de Sistemas en la Industria 4.0</span>
       </footer>
     </section>
   </body>
