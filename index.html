@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard BI & Portal Web Institucional - Universidad Técnica de Cotopaxi (UTC)</title>
+  <title>Dashboard BI & Portal Web - Planta Agroindustrial de Manjar</title>
 
   <!-- Meta etiquetas para SEO y GitHub Pages -->
-  <meta name="description" content="Portal Web Institucional de Inteligencia de Negocios y Dashboard de KPIs en Power BI para la Universidad Técnica de Cotopaxi (UTC).">
-  <meta name="author" content="Universidad Técnica de Cotopaxi - Posgrado / Integración de Sistemas">
+  <meta name="description" content="Portal web de inteligencia de negocios y tablero de KPIs para la Planta Agroindustrial de Manjar.">
+  <meta name="author" content="Proyecto Final - Integración de Sistemas">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph para GitHub / Compartir enlace -->
-  <meta property="og:title" content="Dashboard BI & Portal Web - Universidad Técnica de Cotopaxi (UTC)">
-  <meta property="og:description" content="Sistema de Inteligencia de Negocios para el monitoreo de la Planta Agroindustrial de Manjar con Power BI Embedded.">
+  <meta property="og:title" content="Dashboard BI & Portal Web - Planta Agroindustrial de Manjar">
+  <meta property="og:description" content="Sistema de inteligencia de negocios para el monitoreo de la Planta Agroindustrial de Manjar con Power BI Embedded.">
   <meta property="og:type" content="website">
 
   <!-- FontAwesome Iconos via CDN HTTPS -->
@@ -221,13 +221,14 @@
     }
 
     .brand-title span {
-      color: var(--utc-red-main);
+      color: inherit;
     }
 
     .brand-subtitle {
       font-size: 0.78rem;
       color: var(--text-muted);
       font-weight: 500;
+      line-height: 1.35;
     }
 
     /* MENU DE NAVEGACION */
@@ -976,6 +977,10 @@
       width: auto;
       object-fit: contain;
       align-self: flex-start;
+      background: #ffffff;
+      padding: 6px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     }
 
     .footer-brand-title {
@@ -1083,7 +1088,7 @@
     <div class="top-bar-info">
       <span class="top-bar-item">
         <i class="fa-solid fa-graduation-cap"></i>
-        <strong>Universidad Técnica de Cotopaxi</strong> &bull; Latacunga, Ecuador
+        <strong>Portal BI Planta de Manjar</strong> &bull; Monitoreo de Producción
       </span>
       <span class="top-bar-item">
         <i class="fa-solid fa-laptop-code"></i>
@@ -1107,13 +1112,10 @@
   <header class="main-header" id="header">
     <div class="header-container">
       
-      <!-- Logo Oficial e Identidad UTC -->
-      <a href="#" class="brand-section" title="Universidad Técnica de Cotopaxi">
-        <img src="dspace-logo-utc.png" alt="Logo Universidad Técnica de Cotopaxi" class="utc-logo-header">
-        <div class="brand-divider"></div>
+      <a href="#" class="brand-section" title="Portal BI - Planta Agroindustrial de Manjar">
         <div class="brand-info">
-          <h1 class="brand-title">UNIVERSIDAD TÉCNICA <span>DE COTOPAXI</span></h1>
-          <p class="brand-subtitle">Facultad de Ciencias de la Ingeniería y Aplicadas &bull; Planta Agroindustrial</p>
+          <h1 class="brand-title">Portal BI Universidad Técnica de Cotopaxi</h1>
+          <p class="brand-subtitle">Maestría en Producción y Operaciones industriales<br>Integración de Sistemas en la Industria 4.0</p>
         </div>
       </a>
 
@@ -1123,7 +1125,6 @@
           <li><a href="#inicio" class="nav-link active"><i class="fa-solid fa-house"></i> Inicio</a></li>
           <li><a href="#dashboard" class="nav-link"><i class="fa-solid fa-chart-column"></i> Dashboard BI</a></li>
           <li><a href="#kpis" class="nav-link"><i class="fa-solid fa-gauge-high"></i> 10 KPIs Clave</a></li>
-          <li><a href="#institucion" class="nav-link"><i class="fa-solid fa-building-columns"></i> Institución UTC</a></li>
           <li><a href="#proceso" class="nav-link"><i class="fa-solid fa-industry"></i> Planta Manjar</a></li>
         </ul>
       </nav>
@@ -1146,7 +1147,7 @@
        ========================================== -->
   <main class="main-wrapper" id="inicio">
 
-    <!-- HERO SECTION INSTITUCIONAL -->
+    <!-- HERO SECTION PRINCIPAL -->
     <section class="hero-section">
       <div class="hero-content">
         <div class="hero-badge">
@@ -1156,7 +1157,7 @@
           Sistema Web de Control y <span class="gradient-text">Monitoreo de Producción</span>
         </h2>
         <p class="hero-description">
-          Plataforma web analítica desarrollada para la <strong>Universidad Técnica de Cotopaxi (UTC)</strong>. Integra datos operacionales, métricas de calidad, eficiencia energética y control de costos de la Planta Piloto de Manjar (Dulce de Leche) a través de Power BI Service.
+          Plataforma web analítica para la Planta Agroindustrial de Manjar. Integra datos operacionales, métricas de calidad, eficiencia energética y control de costos con Power BI Service.
         </p>
 
         <!-- Píldoras de Características -->
@@ -1182,40 +1183,6 @@
           <a href="#kpis" class="btn btn-secondary">
             <i class="fa-solid fa-list-check"></i> Ver Resumen de KPIs
           </a>
-        </div>
-      </div>
-
-      <!-- TARJETA PERFIL INSTITUCIONAL UTC CON LOGO OFICIAL -->
-      <div class="hero-institution-card">
-        <div class="inst-card-header">
-          <img src="dspace-logo-utc.png" alt="Logo UTC Institucional" class="inst-card-logo">
-          <div class="inst-details">
-            <h3>Universidad Técnica de Cotopaxi</h3>
-            <p>Carrera de Ingeniería en Sistemas</p>
-          </div>
-        </div>
-
-        <div class="inst-metrics-grid">
-          <div class="inst-metric-item">
-            <div class="inst-metric-label">Ubicación</div>
-            <div class="inst-metric-val">Latacunga, EC</div>
-          </div>
-          <div class="inst-metric-item">
-            <div class="inst-metric-label">Dominio BI</div>
-            <div class="inst-metric-val">Manjar / Alimentos</div>
-          </div>
-          <div class="inst-metric-item">
-            <div class="inst-metric-label">Lotes Analizados</div>
-            <div class="inst-metric-val">1,130 Registros</div>
-          </div>
-          <div class="inst-metric-item">
-            <div class="inst-metric-label">Producción Total</div>
-            <div class="inst-metric-val">587.26 Ton</div>
-          </div>
-        </div>
-
-        <div class="inst-slogan-box">
-          <i class="fa-solid fa-quote-left"></i> "Por la Vinculación de la Universidad con el Pueblo" — Lema Institucional UTC
         </div>
       </div>
     </section>
@@ -1482,152 +1449,21 @@
 
     </section>
 
-    <!-- ==========================================
-         6. SECCIÓN INFORMACIÓN UTC & PLANTA DE MANJAR
-         ========================================== -->
-    <section class="info-tabs-section" id="institucion">
-      
-      <div class="section-title-group">
-        <span class="section-tag">Marco Académico e Institucional</span>
-        <h2 class="section-title"><i class="fa-solid fa-university"></i> Universidad Técnica de Cotopaxi (UTC)</h2>
-        <p class="section-subtitle">Conoce la misión, visión y el contexto agroindustrial del proyecto final.</p>
-      </div>
-
-      <!-- Navegación de Pestañas -->
-      <div class="tabs-navigation">
-        <button class="tab-btn active" data-tab="tab-perfil">
-          <i class="fa-solid fa-building-columns"></i> Perfil Institucional
-        </button>
-        <button class="tab-btn" data-tab="tab-mision">
-          <i class="fa-solid fa-compass"></i> Misión y Visión
-        </button>
-        <button class="tab-btn" data-tab="tab-arquitectura">
-          <i class="fa-solid fa-diagram-project"></i> Arquitectura del Sistema
-        </button>
-      </div>
-
-      <!-- CONTENIDO PESTAÑA 1: PERFIL INSTITUCIONAL -->
-      <div class="tab-content active" id="tab-perfil">
-        <div class="utc-info-grid">
-          
-          <div class="utc-info-card">
-            <h3 class="utc-card-title"><i class="fa-solid fa-landmark"></i> Reseña Institucional UTC</h3>
-            <div class="utc-card-body">
-              La <strong>Universidad Técnica de Cotopaxi (UTC)</strong> es una institución pública de educación superior acreditada en el Ecuador, con sede matriz en la ciudad de Latacunga. Su compromiso se centra en la excelencia académica, la investigación científica y la vinculación directa con el desarrollo socioeconómico de la región central del país.
-            </div>
-          </div>
-
-          <div class="utc-info-card">
-            <h3 class="utc-card-title"><i class="fa-solid fa-laptop-code"></i> Facultad de Ciencias de la Ingeniería</h3>
-            <div class="utc-card-body">
-              La <strong>Facultad de Ciencias de la Ingeniería y Aplicadas (FCIA)</strong> lidera programas de grado y posgrado enfocados en Inteligencia de Negocios, Integración de Sistemas, Big Data e Ingeniería de Software, preparando profesionales capacitados para transformar la industria agroindustrial e informática.
-            </div>
-          </div>
-
-          <div class="utc-info-card">
-            <h3 class="utc-card-title"><i class="fa-solid fa-industry"></i> Planta Piloto de Dulce de Leche</h3>
-            <div class="utc-card-body">
-              La Planta Agroindustrial procesa derivados lácteos de alta calidad (Manjar de Leche). Este proyecto integra la sensorización de lotes, tiempos de pasteurización, concentración de °BRIX y control de costos mediante tableros analíticos interactivos.
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CONTENIDO PESTAÑA 2: MISIÓN Y VISIÓN -->
-      <div class="tab-content" id="tab-mision">
-        <div class="utc-info-grid">
-          
-          <div class="utc-info-card">
-            <h3 class="utc-card-title"><i class="fa-solid fa-bullseye"></i> Misión UTC</h3>
-            <div class="utc-card-body">
-              Formar profesionales humanistas con pensamiento crítico y responsabilidad social, de alto nivel académico, científico y tecnológico, con liderazgo y emprendimiento, sobre la base de los principios de solidaridad, justicia y equidad.
-            </div>
-          </div>
-
-          <div class="utc-info-card">
-            <h3 class="utc-card-title"><i class="fa-solid fa-eye"></i> Visión UTC</h3>
-            <div class="utc-card-body">
-              Ser un referente regional y nacional en la formación e innovación de profesionales, acorde al desarrollo científico y tecnológico para satisfacer las necesidades académicas y de desarrollo local y del país.
-            </div>
-          </div>
-
-          <div class="utc-info-card">
-            <h3 class="utc-card-title"><i class="fa-solid fa-star"></i> Valores Institucionales</h3>
-            <div class="utc-card-body">
-              <ul class="utc-list">
-                <li><i class="fa-solid fa-check"></i> Transparencia y Rigor Científico</li>
-                <li><i class="fa-solid fa-check"></i> Responsabilidad Social y Ambiental</li>
-                <li><i class="fa-solid fa-check"></i> Innovación e Integración de Sistemas</li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CONTENIDO PESTAÑA 3: ARQUITECTURA DEL SISTEMA -->
-      <div class="tab-content" id="tab-arquitectura" id="proceso">
-        <div class="process-flow-container">
-          
-          <div class="process-step-card">
-            <div class="step-number">1</div>
-            <div class="step-title">Ingesta y Limpieza</div>
-            <div class="step-desc">Captura de datos de 1,130 lotes procesados desde CSV/ERP y estructuración con Power Query.</div>
-          </div>
-
-          <div class="process-step-card">
-            <div class="step-number">2</div>
-            <div class="step-title">Modelado DAX</div>
-            <div class="step-desc">Creación de 10 medidas avanzadas DAX (Producción, OEE, Calidad, Costo/Kg, kWh).</div>
-          </div>
-
-          <div class="process-step-card">
-            <div class="step-number">3</div>
-            <div class="step-title">Diseño UX/UI BI</div>
-            <div class="step-desc">Construcción de tableros ejecutivos en Power BI Desktop con paleta UTC e interactividad.</div>
-          </div>
-
-          <div class="process-step-card">
-            <div class="step-number">4</div>
-            <div class="step-title">Power BI Service</div>
-            <div class="step-desc">Publicación en la nube para generación del código de incrustación <iframe> seguro.</div>
-          </div>
-
-          <div class="process-step-card">
-            <div class="step-number">5</div>
-            <div class="step-title">Despliegue Web</div>
-            <div class="step-desc">Integración responsive en portal HTML5 institucional de la Universidad Técnica de Cotopaxi.</div>
-          </div>
-
-        </div>
-      </div>
-
-    </section>
-
   </main>
 
   <!-- ==========================================
-       7. FOOTER INSTITUCIONAL (PIE DE PÁGINA)
+       7. FOOTER (PIE DE PÁGINA)
        ========================================== -->
   <footer class="footer-utc">
     <div class="footer-container">
       
       <div class="footer-brand">
-        <img src="dspace-logo-utc.png" alt="Logo UTC" class="footer-logo-img">
         <div class="footer-brand-title">
-          UNIVERSIDAD TÉCNICA DE COTOPAXI
+          PORTAL BI - PLANTA DE MANJAR
         </div>
         <p class="footer-brand-desc">
-          Proyecto Final de Integración de Sistemas y Business Intelligence. Portal web de monitoreo analítico para la Planta Agroindustrial de Manjar. Latacunga - Cotopaxi - Ecuador.
+          Proyecto Final de Integración de Sistemas y Business Intelligence. Monitoreo analítico de la Planta Agroindustrial de Manjar.
         </p>
-        <div class="social-links">
-          <a href="https://utc.edu.ec" target="_blank" class="social-icon" title="Sitio Web Oficial UTC"><i class="fa-solid fa-globe"></i></a>
-          <a href="#" class="social-icon" title="Facebook UTC"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="social-icon" title="Twitter UTC"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" class="social-icon" title="GitHub Project"><i class="fa-brands fa-github"></i></a>
-        </div>
       </div>
 
       <div>
@@ -1636,13 +1472,7 @@
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#dashboard">Dashboard Power BI</a></li>
           <li><a href="#kpis">10 KPIs Clave</a></li>
-          <li><a href="#institucion">Institución UTC</a></li>
-        </ul>
-      </div>
 
-      <div>
-        <h4 class="footer-column-title">Recursos Técnicos</h4>
-        <ul class="footer-links">
           <li><a href="#">PROYECTO_FINAL.pbix</a></li>
           <li><a href="#">Dataset Consolidado CSV</a></li>
           <li><a href="#">Fórmulas DAX</a></li>
@@ -1650,24 +1480,15 @@
         </ul>
       </div>
 
-      <div>
-        <h4 class="footer-column-title">Contacto Institucional</h4>
-        <ul class="footer-links">
-          <li><a href="#"><i class="fa-solid fa-location-dot"></i> Av. Simón Rodríguez s/n, Latacunga</a></li>
-          <li><a href="#"><i class="fa-solid fa-envelope"></i> posgrado@utc.edu.ec</a></li>
-          <li><a href="#"><i class="fa-solid fa-phone"></i> (+593) 03-2810269</a></li>
-          <li><a href="#"><i class="fa-solid fa-certificate"></i> Acreditada por CACES</a></li>
-        </ul>
-      </div>
 
     </div>
 
     <div class="footer-bottom">
       <div>
-        &copy; 2026 <strong>Universidad Técnica de Cotopaxi (UTC)</strong> &bull; Todos los derechos reservados.
+        &copy; 2026 <strong>Proyecto Final</strong> &bull; Todos los derechos reservados.
       </div>
       <div>
-        Proyecto Final &bull; Integración de Sistemas & BI
+        Integración de Sistemas & Business Intelligence
       </div>
     </div>
   </footer>
