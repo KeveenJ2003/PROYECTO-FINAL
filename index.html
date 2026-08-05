@@ -1,235 +1,1868 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard UTC | Proyecto Power BI</title>
-    <style>
-      :root {
-        --utc-blue-light: #1f98f1;
-        --utc-blue-dark: #026fc4;
-        --utc-blue-deep: #0c2f5f;
-        --utc-surface: #ffffff;
-        --utc-surface-alt: #f5f7fb;
-        --utc-text: #333333;
-        --utc-muted: #666666;
-        --utc-blanco: #ffffff;
-        --utc-gris: #f1f4f8;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard BI & Portal Web Institucional - Universidad Técnica de Cotopaxi (UTC)</title>
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+  <!-- Meta etiquetas para SEO y GitHub Pages -->
+  <meta name="description" content="Portal Web Institucional de Inteligencia de Negocios y Dashboard de KPIs en Power BI para la Universidad Técnica de Cotopaxi (UTC).">
+  <meta name="author" content="Universidad Técnica de Cotopaxi - Posgrado / Integración de Sistemas">
+  <meta name="robots" content="index, follow">
 
-      body {
-        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-        background: #eef4fb;
-        color: var(--utc-text);
-        line-height: 1.6;
-      }
+  <!-- Open Graph para GitHub / Compartir enlace -->
+  <meta property="og:title" content="Dashboard BI & Portal Web - Universidad Técnica de Cotopaxi (UTC)">
+  <meta property="og:description" content="Sistema de Inteligencia de Negocios para el monitoreo de la Planta Agroindustrial de Manjar con Power BI Embedded.">
+  <meta property="og:type" content="website">
 
-      .page-wrapper {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 20px 18px 32px;
-      }
+  <!-- FontAwesome Iconos via CDN HTTPS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
 
-      header {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 18px;
-        padding: 28px 28px 24px;
-        background: linear-gradient(135deg, var(--utc-blue-light), var(--utc-blue-dark));
-        border-radius: 24px;
-        color: var(--utc-surface);
-        box-shadow: 0 24px 50px rgba(2, 111, 196, 0.18);
-      }
+  <!-- Google Fonts via CDN HTTPS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-      .brand {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 18px;
-        width: 100%;
-      }
+  <!-- ==========================================================================
+       ESTILOS CSS INTEGRADOS (AUTOCONTENIDO Y LISTO PARA GITHUB PAGES)
+       ========================================================================== -->
+  <style>
+    /* --- VARIABLES ROOT Y PALETA INSTITUCIONAL UTC --- */
+    :root {
+      --utc-navy-dark: #07111e;
+      --utc-navy-main: #0b1d3a;
+      --utc-navy-light: #132d56;
+      --utc-red-main: #d90429;
+      --utc-red-hover: #ef233c;
+      --utc-red-dark: #9b001c;
+      --utc-gold: #f7b801;
+      --utc-gold-hover: #ffca28;
+      --utc-blue-accent: #0077b6;
 
-      .brand-logo {
-        min-width: 90px;
-        min-height: 90px;
-        display: grid;
-        place-items: center;
-        border-radius: 22px;
-        background: rgba(255, 255, 255, 0.18);
-        color: var(--utc-surface);
-        padding: 16px;
-      }
+      --bg-primary: #060c18;
+      --bg-secondary: #0d1829;
+      --bg-card: rgba(15, 27, 48, 0.75);
+      --bg-card-hover: rgba(22, 38, 66, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-highlight: rgba(217, 4, 41, 0.4);
 
-      .brand-logo svg {
-        width: 52px;
-        height: 52px;
-        display: block;
-      }
+      --font-primary: 'Outfit', sans-serif;
+      --font-secondary: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
 
-      .brand-info h1 {
-        font-size: clamp(1.8rem, 2.8vw, 2.6rem);
-        line-height: 1.1;
-        margin-bottom: 10px;
-      }
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
 
-      .brand-info p {
-        font-size: 1rem;
-        opacity: 0.92;
-      }
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      --shadow-glow-red: 0 0 25px rgba(217, 4, 41, 0.35);
 
-      .logo-subtitle {
-        font-size: 1rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        opacity: 0.9;
-        margin-bottom: 6px;
-      }
+      --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-      .course-name {
-        font-size: 1rem;
-        color: #d0e8ff;
-        margin-top: 8px;
-      }
+    /* MODO CLARO ALTERNATIVO */
+    body.light-mode {
+      --bg-primary: #f1f5f9;
+      --bg-secondary: #ffffff;
+      --bg-card: rgba(255, 255, 255, 0.85);
+      --bg-card-hover: rgba(248, 250, 252, 0.95);
+      --border-color: rgba(0, 0, 0, 0.08);
+      --border-highlight: rgba(217, 4, 41, 0.5);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+    }
 
-      .tagline {
-        font-size: 0.95rem;
-        margin-top: 10px;
-        padding: 18px 22px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.16);
-        max-width: 580px;
-        color: var(--utc-surface);
-      }
+    /* RESETEO GLOBAL */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      .section-title {
-        margin: 32px 0 18px;
-        font-size: 1.6rem;
-        color: var(--utc-blue-deep);
-      }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
 
-      .dashboard-frame {
-        position: relative;
-        width: 100%;
-        min-height: 620px;
-        overflow: hidden;
-        border-radius: 24px;
-        border: 1px solid rgba(0, 51, 102, 0.16);
-        background: var(--utc-gris);
-      }
+    body {
+      font-family: var(--font-primary);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(13, 33, 64, 0.6) 0%, transparent 40%),
+        radial-gradient(circle at 85% 60%, rgba(217, 4, 41, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 50% 90%, rgba(0, 119, 182, 0.15) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
 
-      .dashboard-frame {
-        position: relative;
-        width: 100%;
-        min-height: 620px;
-        overflow: hidden;
-        border-radius: 24px;
-        border: 1px solid rgba(0, 51, 102, 0.16);
-        background: var(--utc-gris);
-      }
+    /* BARRA SUPERIOR DE ESTADO */
+    .top-bar {
+      background: linear-gradient(90deg, #07111e 0%, #0d2137 50%, #9b001c 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.825rem;
+      padding: 0.4rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 100;
+    }
 
-      .dashboard-frame::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(31, 152, 241, 0.14), transparent 40%);
-        pointer-events: none;
-      }
+    .top-bar-info {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
 
-      .dashboard-frame iframe {
-        width: 100%;
-        height: 100%;
-        min-height: 620px;
-        border: none;
-      }
+    .top-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+    }
 
-      .footer {
-        margin-top: 24px;
-        padding: 20px 24px;
-        border-radius: 18px;
-        background: #ffffff;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 14px;
-        color: var(--utc-muted);
-        border: 1px solid #d6e7fb;
-      }
+    .top-bar-item i {
+      color: var(--utc-gold);
+    }
 
-      .footer span {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin: 0;
-      }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.15rem 0.6rem;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 999px;
+      color: #34d399;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
 
-      @media (min-width: 780px) {
-        .content-grid {
-          grid-template-columns: 1fr 1.2fr;
-        }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background-color: #34d399;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #34d399;
+      animation: pulse-dot 1.8s infinite;
+    }
 
-        .dashboard-frame {
-          min-height: 720px;
-        }
-      }
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
 
-      @media (max-width: 620px) {
-        header {
-          padding: 18px;
-        }
+    /* ENCABEZADO WEB PRINCIPAL */
+    .main-header {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      background: rgba(7, 17, 30, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.8rem 2rem;
+      transition: var(--transition-normal);
+    }
 
-        .brand {
-          width: 100%;
-        }
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
 
-        .dashboard-frame {
-          min-height: 520px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <section class="page-wrapper">
-      <header>
-        <div class="brand">
-          <div class="brand-logo" aria-label="Logo UTC">
-            <img
-              src="https://www.utc.edu.ec/Portals/0/2026/ENLACES/logo-planificacio%CC%81n.png?ver=2026-02-05-123623-197"
-              alt="Logo UTC"
-              style="width: 72px; height: auto; display: block;"
-            />
-          </div>
-          <div class="brand-info">
-            <p class="logo-subtitle">Universidad Técnica de Cotopaxi</p>
-            <h1>Maestría en Producción y Operaciones Industriales</h1>
-            <p class="course-name">Integración de Sistemas en la Industria 4.0</p>
-          </div>
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+
+    .utc-logo-badge {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--utc-red-main), var(--utc-navy-main));
+      border: 2px solid var(--utc-gold);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-glow-red);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .utc-badge-text {
+      font-family: var(--font-primary);
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .utc-badge-sub {
+      font-size: 0.55rem;
+      color: var(--utc-gold);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
+
+    .brand-title span {
+      color: var(--utc-red-main);
+    }
+
+    .brand-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* MENU DE NAVEGACION */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #ffffff;
+      background: rgba(217, 4, 41, 0.15);
+      border: 1px solid rgba(217, 4, 41, 0.3);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--utc-red-main), var(--utc-red-dark));
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(217, 4, 41, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--utc-red-hover), var(--utc-red-main));
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+
+    .theme-toggle-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--utc-gold);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: var(--transition-fast);
+    }
+
+    .theme-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: rotate(15deg);
+    }
+
+    /* ESTRUCTURA PRINCIPAL */
+    .main-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(11, 29, 58, 0.85) 0%, rgba(7, 17, 30, 0.95) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      background: rgba(217, 4, 41, 0.12);
+      border: 1px solid rgba(217, 4, 41, 0.3);
+      border-radius: 999px;
+      color: #ff4d6d;
+      font-size: 0.8rem;
+      font-weight: 700;
+      width: fit-content;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      line-height: 1.18;
+      color: #ffffff;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, var(--utc-gold) 50%, var(--utc-red-hover) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .hero-features-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+
+    .feature-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    .feature-pill i {
+      color: var(--utc-gold);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    /* HERO CARD DERECHA UTC */
+    .hero-institution-card {
+      background: rgba(13, 24, 41, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      z-index: 2;
+    }
+
+    .inst-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    .inst-avatar {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--utc-navy-main), #004080);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--utc-gold);
+      border: 1px solid var(--utc-gold);
+    }
+
+    .inst-details h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .inst-details p {
+      font-size: 0.8rem;
+      color: var(--utc-gold);
+      font-weight: 600;
+    }
+
+    .inst-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+
+    .inst-metric-item {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .inst-metric-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .inst-metric-val {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 0.2rem;
+    }
+
+    .inst-slogan-box {
+      background: rgba(217, 4, 41, 0.1);
+      border-left: 3px solid var(--utc-red-main);
+      padding: 0.75rem 1rem;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: #f1f5f9;
+    }
+
+    /* SECCION DASHBOARD POWER BI */
+    .dashboard-container-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .section-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--utc-red-main);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-title i {
+      color: var(--utc-gold);
+    }
+
+    .section-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* POWER BI CARD & RESPONSIVE IFRAME CONTAINER */
+    .powerbi-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-normal);
+    }
+
+    .powerbi-card.is-fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 99999;
+      border-radius: 0;
+    }
+
+    .powerbi-toolbar {
+      background: rgba(11, 29, 58, 0.95);
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      gap: 1rem;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .report-title-badge {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .report-title-badge i {
+      color: #f2c94c;
+    }
+
+    .pbi-tag {
+      background: rgba(242, 201, 76, 0.15);
+      color: #f2c94c;
+      border: 1px solid rgba(242, 201, 76, 0.3);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .tool-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .tool-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    /* CONTENEDOR RESPONSIVE DEL IFRAME SOLICITADO */
+    .iframe-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 52.6%; /* Mantener la relación de aspecto exacta de 1140x541.25 */
+      height: 0;
+      background: #060b13;
+      overflow: hidden;
+    }
+
+    .powerbi-card.is-fullscreen .iframe-wrapper {
+      padding-bottom: 0;
+      height: calc(100vh - 50px);
+    }
+
+    .iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* SECCION DE LOS 10 KPIS */
+    .kpis-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .kpi-filters {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--utc-red-main);
+      color: #ffffff;
+      border-color: var(--utc-red-main);
+    }
+
+    .kpis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--utc-red-main);
+      opacity: 0.6;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+      border-color: var(--border-highlight);
+    }
+
+    .kpi-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .kpi-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(217, 4, 41, 0.12);
+      color: var(--utc-red-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      border: 1px solid rgba(217, 4, 41, 0.25);
+    }
+
+    .kpi-category {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .kpi-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .kpi-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .kpi-value-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      margin-top: 0.2rem;
+    }
+
+    .kpi-value {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #ffffff;
+      font-family: var(--font-mono);
+    }
+
+    .kpi-unit {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .kpi-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.6rem;
+      font-size: 0.75rem;
+    }
+
+    .kpi-status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-weight: 600;
+    }
+
+    .kpi-status-tag.positive { color: #34d399; }
+    .kpi-status-tag.neutral { color: var(--utc-gold); }
+    .kpi-status-tag.warning { color: #fb923c; }
+
+    .kpi-target {
+      color: var(--text-dim);
+    }
+
+    /* SECCION INFORMACION UTC & PESTAÑAS */
+    .info-tabs-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .tabs-navigation {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 0.6rem 1.2rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      color: #ffffff;
+      background: var(--utc-navy-light);
+      border: 1px solid var(--border-highlight);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .utc-info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .utc-info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .utc-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .utc-card-title i {
+      color: var(--utc-red-main);
+    }
+
+    .utc-card-body {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .utc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .utc-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .utc-list li i {
+      color: #34d399;
+      font-size: 0.8rem;
+    }
+
+    /* ARQUITECTURA / PROCESO MANJAR */
+    .process-flow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .process-step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--utc-red-main);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .step-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    .footer-utc {
+      background: #040912;
+      border-top: 1px solid var(--border-color);
+      padding: 3rem 2rem 1.5rem 2rem;
+      margin-top: 3rem;
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .footer-brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .footer-brand-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .footer-column-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--utc-gold);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+
+    .social-icon:hover {
+      background: var(--utc-red-main);
+      color: #ffffff;
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* MEDIA QUERIES */
+    @media (max-width: 1024px) {
+      .hero-section { grid-template-columns: 1fr; }
+      .utc-info-grid { grid-template-columns: 1fr 1fr; }
+      .footer-container { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .top-bar { display: none; }
+      .nav-menu { display: none; }
+      .hero-title { font-size: 1.8rem; }
+      .utc-info-grid { grid-template-columns: 1fr; }
+      .footer-container { grid-template-columns: 1fr; }
+      .powerbi-toolbar { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       1. BARRA SUPERIOR DE ESTADO E INFORMACIÓN
+       ========================================== -->
+  <div class="top-bar">
+    <div class="top-bar-info">
+      <span class="top-bar-item">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <strong>Universidad Técnica de Cotopaxi</strong> &bull; Latacunga, Ecuador
+      </span>
+      <span class="top-bar-item">
+        <i class="fa-solid fa-laptop-code"></i>
+        Integración de Sistemas & Business Intelligence
+      </span>
+    </div>
+    <div class="top-bar-info">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        Power BI Service: Sincronizado
+      </div>
+      <span class="top-bar-item" id="live-clock">
+        <i class="fa-regular fa-clock"></i> Cargando hora...
+      </span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       2. ENCABEZADO WEB PRINCIPAL (MAIN HEADER)
+       ========================================== -->
+  <header class="main-header" id="header">
+    <div class="header-container">
+      
+      <!-- Logo e Identidad UTC -->
+      <a href="#" class="brand-section">
+        <div class="utc-logo-badge">
+          <span class="utc-badge-text">UTC</span>
+          <span class="utc-badge-sub">ECUADOR</span>
         </div>
-        <div class="tagline">
-          Plataforma de apoyo académico con el informe Power BI integrado para análisis industrial y de operaciones.
+        <div class="brand-info">
+          <h1 class="brand-title">UNIVERSIDAD TÉCNICA <span>DE COTOPAXI</span></h1>
+          <p class="brand-subtitle">Facultad de Ciencias de la Ingeniería y Aplicadas &bull; Planta Agroindustrial</p>
         </div>
-      </header>
+      </a>
 
-      <h2 class="section-title">Dashboard Power BI UTC</h2>
-      <div class="dashboard-frame">
-        <iframe
-          title="PROYECTO_FINAL"
-          src="https://app.powerbi.com/reportEmbed?reportId=c02bc3e3-0b3c-41ce-8962-3b14aed56b3c&autoAuth=true&ctid=9af47790-0626-431c-b08b-a4c57bb5820a"
-          allowfullscreen="true"
-        ></iframe>
+      <!-- Menú de Navegación -->
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#inicio" class="nav-link active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+          <li><a href="#dashboard" class="nav-link"><i class="fa-solid fa-chart-column"></i> Dashboard BI</a></li>
+          <li><a href="#kpis" class="nav-link"><i class="fa-solid fa-gauge-high"></i> 10 KPIs Clave</a></li>
+          <li><a href="#institucion" class="nav-link"><i class="fa-solid fa-building-columns"></i> Institución UTC</a></li>
+          <li><a href="#proceso" class="nav-link"><i class="fa-solid fa-industry"></i> Planta Manjar</a></li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de Encabezado -->
+      <div class="header-actions">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" title="Cambiar Tema (Oscuro/Claro)">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+        <a href="#dashboard" class="btn btn-primary">
+          <i class="fa-solid fa-play"></i> Ver Dashboard
+        </a>
       </div>
 
-      <footer class="footer">
-        <span>UTC - Universidad Técnica de Cotopaxi</span>
-        <span>Maestría en Producción y Operaciones Industriales • Integración de Sistemas en la Industria 4.0</span>
-      </footer>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       3. CONTENIDO PRINCIPAL (MAIN WRAPPER)
+       ========================================== -->
+  <main class="main-wrapper" id="inicio">
+
+    <!-- HERO SECTION INSTITUCIONAL -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-award"></i> Proyecto Final &bull; Inteligencia de Negocios
+        </div>
+        <h2 class="hero-title">
+          Sistema Web de Control y <span class="gradient-text">Monitoreo de Producción</span>
+        </h2>
+        <p class="hero-description">
+          Plataforma web analítica desarrollada para la <strong>Universidad Técnica de Cotopaxi (UTC)</strong>. Integra datos operacionales, métricas de calidad, eficiencia energética y control de costos de la Planta Piloto de Manjar (Dulce de Leche) a través de Power BI Service.
+        </p>
+
+        <!-- Píldoras de Características -->
+        <div class="hero-features-list">
+          <div class="feature-pill">
+            <i class="fa-solid fa-check-circle"></i> 10 KPIs Automatizados en DAX
+          </div>
+          <div class="feature-pill">
+            <i class="fa-solid fa-bolt"></i> Monitoreo OEE y Eficiencia
+          </div>
+          <div class="feature-pill">
+            <i class="fa-solid fa-shield-halved"></i> Control de Calidad Conforme
+          </div>
+          <div class="feature-pill">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Conexión Power BI Embedded
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#dashboard" class="btn btn-primary">
+            <i class="fa-solid fa-chart-line"></i> Explorar Dashboard Interactivo
+          </a>
+          <a href="#kpis" class="btn btn-secondary">
+            <i class="fa-solid fa-list-check"></i> Ver Resumen de KPIs
+          </a>
+        </div>
+      </div>
+
+      <!-- TARJETA PERFIL INSTITUCIONAL UTC -->
+      <div class="hero-institution-card">
+        <div class="inst-card-header">
+          <div class="inst-avatar">
+            <i class="fa-solid fa-university"></i>
+          </div>
+          <div class="inst-details">
+            <h3>Universidad Técnica de Cotopaxi</h3>
+            <p>Carrera de Ingeniería en Sistemas</p>
+          </div>
+        </div>
+
+        <div class="inst-metrics-grid">
+          <div class="inst-metric-item">
+            <div class="inst-metric-label">Ubicación</div>
+            <div class="inst-metric-val">Latacunga, EC</div>
+          </div>
+          <div class="inst-metric-item">
+            <div class="inst-metric-label">Dominio BI</div>
+            <div class="inst-metric-val">Manjar / Alimentos</div>
+          </div>
+          <div class="inst-metric-item">
+            <div class="inst-metric-label">Lotes Analizados</div>
+            <div class="inst-metric-val">1,130 Registros</div>
+          </div>
+          <div class="inst-metric-item">
+            <div class="inst-metric-label">Producción Total</div>
+            <div class="inst-metric-val">587.26 Ton</div>
+          </div>
+        </div>
+
+        <div class="inst-slogan-box">
+          <i class="fa-solid fa-quote-left"></i> "Por la Vinculación de la Universidad con el Pueblo" — Lema Institucional UTC
+        </div>
+      </div>
     </section>
-  </body>
+
+    <!-- ==========================================
+         4. SECCIÓN DASHBOARD POWER BI EMBEDDED
+         ========================================== -->
+    <section class="dashboard-container-section" id="dashboard">
+      
+      <div class="section-header-row">
+        <div class="section-title-group">
+          <span class="section-tag">Visualización de Datos en Tiempo Real</span>
+          <h2 class="section-title"><i class="fa-solid fa-chart-pie"></i> Dashboard Ejecutivo de KPIs &bull; Power BI</h2>
+          <p class="section-subtitle">Informe interactivo embebido directamente desde el servicio de Power BI Pro.</p>
+        </div>
+        <div>
+          <button class="btn btn-secondary" id="fullscreen-btn">
+            <i class="fa-solid fa-expand"></i> Pantalla Completa
+          </button>
+        </div>
+      </div>
+
+      <!-- CONTENEDOR TARJETA POWER BI CON EL IFRAME REQUERIDO -->
+      <div class="powerbi-card" id="powerbi-card">
+        
+        <!-- Toolbar del Iframe -->
+        <div class="powerbi-toolbar">
+          <div class="toolbar-left">
+            <span class="report-title-badge">
+              <i class="fa-solid fa-chart-simple"></i> PROYECTO_FINAL.pbix &bull; Dashboard Consolidado
+            </span>
+            <span class="pbi-tag"><i class="fa-solid fa-circle-check"></i> Informe Verificado</span>
+          </div>
+          <div class="toolbar-right">
+            <span class="tool-btn" title="ID de Reporte de Power BI">
+              <i class="fa-solid fa-key"></i> Report ID: c02bc3e3...
+            </span>
+            <a href="https://app.powerbi.com/reportEmbed?reportId=c02bc3e3-0b3c-41ce-8962-3b14aed56b3c&autoAuth=true&ctid=9af47790-0626-431c-b08b-a4c57bb5820a" target="_blank" class="tool-btn" title="Abrir en Power BI Cloud">
+              <i class="fa-solid fa-up-right-from-square"></i> Abrir en la Nube
+            </a>
+          </div>
+        </div>
+
+        <!-- CONTENEDOR RESPONSIVE DEL IFRAME SOLICITADO EXACTAMENTE -->
+        <div class="iframe-wrapper">
+          <iframe title="PROYECTO_FINAL" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=c02bc3e3-0b3c-41ce-8962-3b14aed56b3c&autoAuth=true&ctid=9af47790-0626-431c-b08b-a4c57bb5820a" frameborder="0" allowFullScreen="true"></iframe>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==========================================
+         5. SECCIÓN RESUMEN EJECUTIVO DE LOS 10 KPIS
+         ========================================== -->
+    <section class="kpis-section" id="kpis">
+      
+      <div class="section-header-row">
+        <div class="section-title-group">
+          <span class="section-tag">Indicadores Clave de Desempeño</span>
+          <h2 class="section-title"><i class="fa-solid fa-list-ol"></i> Los 10 KPI's Estratégicos del Proyecto</h2>
+          <p class="section-subtitle">Fórmulas analíticas calculadas en DAX y validadas contra la base de datos de producción.</p>
+        </div>
+
+        <!-- Filtros de KPIs -->
+        <div class="kpi-filters">
+          <button class="filter-btn active" data-filter="all">Todos (10)</button>
+          <button class="filter-btn" data-filter="produccion">Producción</button>
+          <button class="filter-btn" data-filter="calidad">Calidad</button>
+          <button class="filter-btn" data-filter="costos">Costos</button>
+          <button class="filter-btn" data-filter="eficiencia">Eficiencia / Energía</button>
+        </div>
+      </div>
+
+      <!-- GRID DE TARJETAS DE KPIS -->
+      <div class="kpis-grid">
+        
+        <!-- KPI 1 -->
+        <div class="kpi-card" data-category="produccion">
+          <div class="kpi-top">
+            <div class="kpi-icon-box"><i class="fa-solid fa-weight-hanging"></i></div>
+            <span class="kpi-category">Producción</span>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-name">1. Producción Real Total</div>
+            <div class="kpi-value-row">
+              <span class="kpi-value animate-num" data-value="587261.09" data-decimals="2">587,261.09</span>
+              <span class="kpi-unit">Kg</span>
+            </div>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-status-tag positive"><i class="fa-solid fa-arrow-up"></i> Volumen Conforme</span>
+            <span class="kpi-target">Meta: 600,000 Kg</span>
+          </div>
+        </div>
+
+        <!-- KPI 2 -->
+        <div class="kpi-card" data-category="produccion">
+          <div class="kpi-top">
+            <div class="kpi-icon-box"><i class="fa-solid fa-bullseye"></i></div>
+            <span class="kpi-category">Producción</span>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-name">2. Cumplimiento del Plan</div>
+            <div class="kpi-value-row">
+              <span class="kpi-value animate-num" data-value="97.31" data-decimals="2" data-suffix="%">97.31%</span>
+            </div>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-status-tag positive"><i class="fa-solid fa-check"></i> Alto Desempeño</span>
+            <span class="kpi-target">Meta: ≥ 95.0%</span>
+          </div>
+        </div>
+
+        <!-- KPI 3 -->
+        <div class="kpi-card" data-category="calidad">
+          <div class="kpi-top">
+            <div class="kpi-icon-box"><i class="fa-solid fa-award"></i></div>
+            <span class="kpi-category">Calidad</span>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-name">3. Tasa de Calidad Conforme</div>
+            <div class="kpi-value-row">
+              <span class="kpi-value animate-num" data-value="96.23" data-decimals="2" data-suffix="%">96.23%</span>
+            </div>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-status-tag positive"><i class="fa-solid fa-shield-check"></i> Estándar UTC Aprobado</span>
+            <span class="kpi-target">Meta: ≥ 95.0%</span>
+          </div>
+        </div>
+
+        <!-- KPI 4 -->
+        <div class="kpi-card" data-category="calidad">
+          <div class="kpi-top">
+            <div class="kpi-icon-box"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <span class="kpi-category">Calidad</span>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-name">4. Porcentaje de Defectos</div>
+            <div class="kpi-value-row">
+              <span class="kpi-value animate-num" data-value="3.77" data-decimals="2" data-suffix="%">3.77%</span>
+            </div>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-status-tag warning"><i class="fa-solid fa-minus"></i> Bajo Control</span>
+            <span class="kpi-target">Límite: ≤ 5.0%</span>
+          </div>
+        </div>
+
+        <!-- KPI 5 -->
+        <div class="kpi-card" data-category="eficiencia">
+          <div class="kpi-top">
+            <div class="kpi-icon-box"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            <span class="kpi-category">Eficiencia</span>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-name">5. Disponibilidad Operativa (OEE)</div>
+            <div class="kpi-value-row">
+              <span class="kpi-value animate-num" data-value="84.32" data-decimals="2" data-suffix="%">84.32%</span>
+            </div>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-status-tag positive"><i class="fa-solid fa-gauge"></i> Eficiencia Operativa</span>
+            <span class="kpi-target">Meta: ≥ 80.0%</span>
+          </div>
+        </div>
+
+        <!-- KPI 6 -->
+        <div class="kpi-card" data-category="costos">
+          <div class="kpi-top">
+            <div class="kpi-icon-box"><i class="fa-solid fa-sack-dollar"></i></div>
+            <span class="kpi-category">Costos</span>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-name">6. Costo Total de Producción</div>
+            <div class="kpi-value-row">
+              <span class="kpi-value animate-num" data-value="1589520.63" data-decimals="2" data-prefix="$">$1,589,520.63</span>
+            </div>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-status-tag neutral"><i class="fa-solid fa-coins"></i> Consolidado USD</span>
+            <span class="kpi-target">Presupuesto OK</span>
+          </div>
+        </div>
+
+        <!-- KPI 7 -->
+        <div class="kpi-card" data-category="costos">
+          <div class="kpi-top">
+            <div class="kpi-icon-box"><i class="fa-solid fa-tag"></i></div>
+            <span class="kpi-category">Costos</span>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-name">7. Costo Promedio por Kg</div>
+            <div class="kpi-value-row">
+              <span class="kpi-value animate-num" data-value="2.71" data-decimals="2" data-prefix="$">$2.71</span>
+              <span class="kpi-unit">/ Kg</span>
+            </div>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-status-tag positive"><i class="fa-solid fa-arrow-down"></i> Unitario Competitivo</span>
+            <span class="kpi-target">Objetivo: ≤ $2.85</span>
+          </div>
+        </div>
+
+        <!-- KPI 8 -->
+        <div class="kpi-card" data-category="eficiencia">
+          <div class="kpi-top">
+            <div class="kpi-icon-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <span class="kpi-category">Eficiencia</span>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-name">8. Horas Parada No Planificada</div>
+            <div class="kpi-value-row">
+              <span class="kpi-value animate-num" data-value="216.54" data-decimals="2">216.54</span>
+              <span class="kpi-unit">hrs</span>
+            </div>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-status-tag warning"><i class="fa-solid fa-wrench"></i> Mantenimiento Preventivo</span>
+            <span class="kpi-target">1,130 lotes</span>
+          </div>
+        </div>
+
+        <!-- KPI 9 -->
+        <div class="kpi-card" data-category="produccion">
+          <div class="kpi-top">
+            <div class="kpi-icon-box"><i class="fa-solid fa-flask"></i></div>
+            <span class="kpi-category">Producción</span>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-name">9. Desviación Insumo Leche</div>
+            <div class="kpi-value-row">
+              <span class="kpi-value animate-num" data-value="74347.18" data-decimals="2" data-prefix="+">+74,347.18</span>
+              <span class="kpi-unit">Litros</span>
+            </div>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-status-tag neutral"><i class="fa-solid fa-scale-balanced"></i> Ajuste por °BRIX</span>
+            <span class="kpi-target">Balance Materia Prima</span>
+          </div>
+        </div>
+
+        <!-- KPI 10 -->
+        <div class="kpi-card" data-category="eficiencia">
+          <div class="kpi-top">
+            <div class="kpi-icon-box"><i class="fa-solid fa-bolt"></i></div>
+            <span class="kpi-category">Eficiencia</span>
+          </div>
+          <div class="kpi-body">
+            <div class="kpi-name">10. Consumo Específico Energía</div>
+            <div class="kpi-value-row">
+              <span class="kpi-value animate-num" data-value="0.3305" data-decimals="4">0.3305</span>
+              <span class="kpi-unit">kWh/Kg</span>
+            </div>
+          </div>
+          <div class="kpi-footer">
+            <span class="kpi-status-tag positive"><i class="fa-solid fa-leaf"></i> Sostenibilidad Energética</span>
+            <span class="kpi-target">Eficiencia Eco-Industrial</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==========================================
+         6. SECCIÓN INFORMACIÓN UTC & PLANTA DE MANJAR
+         ========================================== -->
+    <section class="info-tabs-section" id="institucion">
+      
+      <div class="section-title-group">
+        <span class="section-tag">Marco Académico e Institucional</span>
+        <h2 class="section-title"><i class="fa-solid fa-university"></i> Universidad Técnica de Cotopaxi (UTC)</h2>
+        <p class="section-subtitle">Conoce la misión, visión y el contexto agroindustrial del proyecto final.</p>
+      </div>
+
+      <!-- Navegación de Pestañas -->
+      <div class="tabs-navigation">
+        <button class="tab-btn active" data-tab="tab-perfil">
+          <i class="fa-solid fa-building-columns"></i> Perfil Institucional
+        </button>
+        <button class="tab-btn" data-tab="tab-mision">
+          <i class="fa-solid fa-compass"></i> Misión y Visión
+        </button>
+        <button class="tab-btn" data-tab="tab-arquitectura">
+          <i class="fa-solid fa-diagram-project"></i> Arquitectura del Sistema
+        </button>
+      </div>
+
+      <!-- CONTENIDO PESTAÑA 1: PERFIL INSTITUCIONAL -->
+      <div class="tab-content active" id="tab-perfil">
+        <div class="utc-info-grid">
+          
+          <div class="utc-info-card">
+            <h3 class="utc-card-title"><i class="fa-solid fa-landmark"></i> Reseña Institucional UTC</h3>
+            <div class="utc-card-body">
+              La <strong>Universidad Técnica de Cotopaxi (UTC)</strong> es una institución pública de educación superior acreditada en el Ecuador, con sede matriz en la ciudad de Latacunga. Su compromiso se centra en la excelencia académica, la investigación científica y la vinculación directa con el desarrollo socioeconómico de la región central del país.
+            </div>
+          </div>
+
+          <div class="utc-info-card">
+            <h3 class="utc-card-title"><i class="fa-solid fa-laptop-code"></i> Facultad de Ciencias de la Ingeniería</h3>
+            <div class="utc-card-body">
+              La <strong>Facultad de Ciencias de la Ingeniería y Aplicadas (FCIA)</strong> lidera programas de grado y posgrado enfocados en Inteligencia de Negocios, Integración de Sistemas, Big Data e Ingeniería de Software, preparando profesionales capacitados para transformar la industria agroindustrial e informática.
+            </div>
+          </div>
+
+          <div class="utc-info-card">
+            <h3 class="utc-card-title"><i class="fa-solid fa-industry"></i> Planta Piloto de Dulce de Leche</h3>
+            <div class="utc-card-body">
+              La Planta Agroindustrial procesa derivados lácteos de alta calidad (Manjar de Leche). Este proyecto integra la sensorización de lotes, tiempos de pasteurización, concentración de °BRIX y control de costos mediante tableros analíticos interactivos.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CONTENIDO PESTAÑA 2: MISIÓN Y VISIÓN -->
+      <div class="tab-content" id="tab-mision">
+        <div class="utc-info-grid">
+          
+          <div class="utc-info-card">
+            <h3 class="utc-card-title"><i class="fa-solid fa-bullseye"></i> Misión UTC</h3>
+            <div class="utc-card-body">
+              Formar profesionales humanistas con pensamiento crítico y responsabilidad social, de alto nivel académico, científico y tecnológico, con liderazgo y emprendimiento, sobre la base de los principios de solidaridad, justicia y equidad.
+            </div>
+          </div>
+
+          <div class="utc-info-card">
+            <h3 class="utc-card-title"><i class="fa-solid fa-eye"></i> Visión UTC</h3>
+            <div class="utc-card-body">
+              Ser un referente regional y nacional en la formación e innovación de profesionales, acorde al desarrollo científico y tecnológico para satisfacer las necesidades académicas y de desarrollo local y del país.
+            </div>
+          </div>
+
+          <div class="utc-info-card">
+            <h3 class="utc-card-title"><i class="fa-solid fa-star"></i> Valores Institucionales</h3>
+            <div class="utc-card-body">
+              <ul class="utc-list">
+                <li><i class="fa-solid fa-check"></i> Transparencia y Rigor Científico</li>
+                <li><i class="fa-solid fa-check"></i> Responsabilidad Social y Ambiental</li>
+                <li><i class="fa-solid fa-check"></i> Innovación e Integración de Sistemas</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CONTENIDO PESTAÑA 3: ARQUITECTURA DEL SISTEMA -->
+      <div class="tab-content" id="tab-arquitectura" id="proceso">
+        <div class="process-flow-container">
+          
+          <div class="process-step-card">
+            <div class="step-number">1</div>
+            <div class="step-title">Ingesta y Limpieza</div>
+            <div class="step-desc">Captura de datos de 1,130 lotes procesados desde CSV/ERP y estructuración con Power Query.</div>
+          </div>
+
+          <div class="process-step-card">
+            <div class="step-number">2</div>
+            <div class="step-title">Modelado DAX</div>
+            <div class="step-desc">Creación de 10 medidas avanzadas DAX (Producción, OEE, Calidad, Costo/Kg, kWh).</div>
+          </div>
+
+          <div class="process-step-card">
+            <div class="step-number">3</div>
+            <div class="step-title">Diseño UX/UI BI</div>
+            <div class="step-desc">Construcción de tableros ejecutivos en Power BI Desktop con paleta UTC e interactividad.</div>
+          </div>
+
+          <div class="process-step-card">
+            <div class="step-number">4</div>
+            <div class="step-title">Power BI Service</div>
+            <div class="step-desc">Publicación en la nube para generación del código de incrustación <iframe> seguro.</div>
+          </div>
+
+          <div class="process-step-card">
+            <div class="step-number">5</div>
+            <div class="step-title">Despliegue Web</div>
+            <div class="step-desc">Integración responsive en portal HTML5 institucional de la Universidad Técnica de Cotopaxi.</div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       7. FOOTER INSTITUCIONAL (PIE DE PÁGINA)
+       ========================================== -->
+  <footer class="footer-utc">
+    <div class="footer-container">
+      
+      <div class="footer-brand">
+        <div class="footer-brand-title">
+          <i class="fa-solid fa-university"></i> UNIVERSIDAD TÉCNICA DE COTOPAXI
+        </div>
+        <p class="footer-brand-desc">
+          Proyecto Final de Integración de Sistemas y Business Intelligence. Portal web de monitoreo analítico para la Planta Agroindustrial de Manjar. Latacunga - Cotopaxi - Ecuador.
+        </p>
+        <div class="social-links">
+          <a href="https://utc.edu.ec" target="_blank" class="social-icon" title="Sitio Web Oficial UTC"><i class="fa-solid fa-globe"></i></a>
+          <a href="#" class="social-icon" title="Facebook UTC"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon" title="Twitter UTC"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon" title="GitHub Project"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-column-title">Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#dashboard">Dashboard Power BI</a></li>
+          <li><a href="#kpis">10 KPIs Clave</a></li>
+          <li><a href="#institucion">Institución UTC</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-column-title">Recursos Técnicos</h4>
+        <ul class="footer-links">
+          <li><a href="#">PROYECTO_FINAL.pbix</a></li>
+          <li><a href="#">Dataset Consolidado CSV</a></li>
+          <li><a href="#">Fórmulas DAX</a></li>
+          <li><a href="#">Power BI Service Embed</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-column-title">Contacto Institucional</h4>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fa-solid fa-location-dot"></i> Av. Simón Rodríguez s/n, Latacunga</a></li>
+          <li><a href="#"><i class="fa-solid fa-envelope"></i> posgrado@utc.edu.ec</a></li>
+          <li><a href="#"><i class="fa-solid fa-phone"></i> (+593) 03-2810269</a></li>
+          <li><a href="#"><i class="fa-solid fa-certificate"></i> Acreditada por CACES</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        &copy; 2026 <strong>Universidad Técnica de Cotopaxi (UTC)</strong> &bull; Todos los derechos reservados.
+      </div>
+      <div>
+        Proyecto Final &bull; Integración de Sistemas & BI
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JAVASCRIPT INTEGRADO (INTERACTIVIDAD COMPLETA)
+       ========================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initClock();
+      initThemeToggle();
+      initFullscreen();
+      initKpiFilters();
+      initInfoTabs();
+      initCounterAnimations();
+      initSmoothScroll();
+    });
+
+    /* RELOJ EN TIEMPO REAL */
+    function initClock() {
+      const clockElement = document.getElementById('live-clock');
+      if (!clockElement) return;
+
+      function updateClock() {
+        const now = new Date();
+        const options = { 
+          weekday: 'short', 
+          year: 'numeric', 
+          month: 'short', 
+          day: 'numeric',
+          hour: '2-digit', 
+          minute: '2-digit',
+          second: '2-digit'
+        };
+        clockElement.textContent = now.toLocaleDateString('es-EC', options);
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+    }
+
+    /* CAMBIO DE TEMA */
+    function initThemeToggle() {
+      const toggleBtn = document.getElementById('theme-toggle-btn');
+      if (!toggleBtn) return;
+
+      const savedTheme = localStorage.getItem('utc_theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+      }
+
+      toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        const isLight = document.body.classList.contains('light-mode');
+        toggleBtn.innerHTML = isLight ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        localStorage.setItem('utc_theme', isLight ? 'light' : 'dark');
+      });
+    }
+
+    /* MODO PANTALLA COMPLETA POWER BI */
+    function initFullscreen() {
+      const pbiCard = document.getElementById('powerbi-card');
+      const fullscreenBtn = document.getElementById('fullscreen-btn');
+      if (!pbiCard || !fullscreenBtn) return;
+
+      fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          if (pbiCard.requestFullscreen) pbiCard.requestFullscreen();
+          else if (pbiCard.webkitRequestFullscreen) pbiCard.webkitRequestFullscreen();
+          pbiCard.classList.add('is-fullscreen');
+          fullscreenBtn.innerHTML = '<i class="fa-solid fa-compress"></i> Salir de Pantalla Completa';
+        } else {
+          if (document.exitFullscreen) document.exitFullscreen();
+          pbiCard.classList.remove('is-fullscreen');
+          fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i> Pantalla Completa';
+        }
+      });
+
+      document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+          pbiCard.classList.remove('is-fullscreen');
+          fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i> Pantalla Completa';
+        }
+      });
+    }
+
+    /* FILTRO DE KPIS */
+    function initKpiFilters() {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const kpiCards = document.querySelectorAll('.kpi-card');
+      if (!filterBtns.length || !kpiCards.length) return;
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filterCategory = btn.getAttribute('data-filter');
+          kpiCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            if (filterCategory === 'all' || cardCategory === filterCategory) {
+              card.style.display = 'flex';
+              card.style.animation = 'fadeIn 0.3s ease-in-out';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    }
+
+    /* PESTAÑAS INSTITUCIONALES */
+    function initInfoTabs() {
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.tab-content');
+      if (!tabBtns.length) return;
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.getAttribute('data-tab');
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+
+          btn.classList.add('active');
+          const targetContent = document.getElementById(targetId);
+          if (targetContent) targetContent.classList.add('active');
+        });
+      });
+    }
+
+    /* ANIMACIÓN DE CONTADORES NUMÉRICOS */
+    function initCounterAnimations() {
+      const counters = document.querySelectorAll('.animate-num');
+      if (!counters.length) return;
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseFloat(el.getAttribute('data-value'));
+            const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+            const prefix = el.getAttribute('data-prefix') || '';
+            const suffix = el.getAttribute('data-suffix') || '';
+
+            animateValue(el, 0, target, 1500, decimals, prefix, suffix);
+            obs.unobserve(el);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      counters.forEach(counter => observer.observe(counter));
+    }
+
+    function animateValue(obj, start, end, duration, decimals, prefix, suffix) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const currentValue = start + progress * (end - start);
+        let formattedVal = currentValue.toLocaleString('es-EC', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+        obj.textContent = `${prefix}${formattedVal}${suffix}`;
+        if (progress < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    /* DESPLAZAMIENTO SUAVE DE NAVEGACIÓN */
+    function initSmoothScroll() {
+      const links = document.querySelectorAll('a[href^="#"]');
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const targetId = link.getAttribute('href');
+          if (targetId === '#') return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    }
+  </script>
+</body>
 </html>
