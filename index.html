@@ -168,7 +168,7 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-color);
-      padding: 0.8rem 2rem;
+      padding: 0.7rem 2rem;
       transition: var(--transition-normal);
     }
 
@@ -184,38 +184,27 @@
     .brand-section {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.2rem;
       text-decoration: none;
     }
 
-    .utc-logo-badge {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--utc-red-main), var(--utc-navy-main));
-      border: 2px solid var(--utc-gold);
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--shadow-glow-red);
-      position: relative;
-      overflow: hidden;
+    /* LOGO UTC IMAGEN */
+    .utc-logo-header {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+      transition: var(--transition-fast);
     }
 
-    .utc-badge-text {
-      font-family: var(--font-primary);
-      font-weight: 800;
-      font-size: 1.05rem;
-      color: #ffffff;
-      line-height: 1;
+    .utc-logo-header:hover {
+      transform: scale(1.03);
     }
 
-    .utc-badge-sub {
-      font-size: 0.55rem;
-      color: var(--utc-gold);
-      font-weight: 700;
-      letter-spacing: 0.5px;
+    .brand-divider {
+      width: 1px;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.15);
     }
 
     .brand-info {
@@ -224,7 +213,7 @@
     }
 
     .brand-title {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: var(--text-main);
       letter-spacing: -0.3px;
@@ -447,17 +436,10 @@
       padding-bottom: 1rem;
     }
 
-    .inst-avatar {
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, var(--utc-navy-main), #004080);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: var(--utc-gold);
-      border: 1px solid var(--utc-gold);
+    .inst-card-logo {
+      height: 46px;
+      width: auto;
+      object-fit: contain;
     }
 
     .inst-details h3 {
@@ -989,10 +971,20 @@
       gap: 1rem;
     }
 
+    .footer-logo-img {
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+      align-self: flex-start;
+    }
+
     .footer-brand-title {
       font-size: 1.15rem;
       font-weight: 800;
       color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .footer-brand-desc {
@@ -1078,6 +1070,7 @@
       .utc-info-grid { grid-template-columns: 1fr; }
       .footer-container { grid-template-columns: 1fr; }
       .powerbi-toolbar { flex-direction: column; align-items: flex-start; }
+      .brand-divider { display: none; }
     }
   </style>
 </head>
@@ -1114,12 +1107,10 @@
   <header class="main-header" id="header">
     <div class="header-container">
       
-      <!-- Logo e Identidad UTC -->
-      <a href="#" class="brand-section">
-        <div class="utc-logo-badge">
-          <span class="utc-badge-text">UTC</span>
-          <span class="utc-badge-sub">ECUADOR</span>
-        </div>
+      <!-- Logo Oficial e Identidad UTC -->
+      <a href="#" class="brand-section" title="Universidad Técnica de Cotopaxi">
+        <img src="dspace-logo-utc.png" alt="Logo Universidad Técnica de Cotopaxi" class="utc-logo-header">
+        <div class="brand-divider"></div>
         <div class="brand-info">
           <h1 class="brand-title">UNIVERSIDAD TÉCNICA <span>DE COTOPAXI</span></h1>
           <p class="brand-subtitle">Facultad de Ciencias de la Ingeniería y Aplicadas &bull; Planta Agroindustrial</p>
@@ -1194,12 +1185,10 @@
         </div>
       </div>
 
-      <!-- TARJETA PERFIL INSTITUCIONAL UTC -->
+      <!-- TARJETA PERFIL INSTITUCIONAL UTC CON LOGO OFICIAL -->
       <div class="hero-institution-card">
         <div class="inst-card-header">
-          <div class="inst-avatar">
-            <i class="fa-solid fa-university"></i>
-          </div>
+          <img src="dspace-logo-utc.png" alt="Logo UTC Institucional" class="inst-card-logo">
           <div class="inst-details">
             <h3>Universidad Técnica de Cotopaxi</h3>
             <p>Carrera de Ingeniería en Sistemas</p>
@@ -1625,8 +1614,9 @@
     <div class="footer-container">
       
       <div class="footer-brand">
+        <img src="dspace-logo-utc.png" alt="Logo UTC" class="footer-logo-img">
         <div class="footer-brand-title">
-          <i class="fa-solid fa-university"></i> UNIVERSIDAD TÉCNICA DE COTOPAXI
+          UNIVERSIDAD TÉCNICA DE COTOPAXI
         </div>
         <p class="footer-brand-desc">
           Proyecto Final de Integración de Sistemas y Business Intelligence. Portal web de monitoreo analítico para la Planta Agroindustrial de Manjar. Latacunga - Cotopaxi - Ecuador.
