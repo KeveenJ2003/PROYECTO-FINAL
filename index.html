@@ -195,6 +195,10 @@
       object-fit: contain;
       filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
       transition: var(--transition-fast);
+      background: #ffffff;
+      padding: 8px;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
 
     .utc-logo-header:hover {
@@ -323,7 +327,8 @@
 
     /* ESTRUCTURA PRINCIPAL */
     .main-wrapper {
-      max-width: 1400px;
+      width: 100%;
+      max-width: none;
       margin: 0 auto;
       padding: 2rem 2rem 4rem 2rem;
       display: flex;
