@@ -695,6 +695,44 @@
       gap: 1.25rem;
     }
 
+    .report-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .report-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .report-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.3rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-normal);
+    }
+
+    .report-card:hover {
+      transform: translateY(-3px);
+      background: var(--bg-card-hover);
+    }
+
+    .report-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.85rem;
+      color: #ffffff;
+    }
+
+    .report-card p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 0.92rem;
+    }
+
     .kpi-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -1122,7 +1160,7 @@
       <a href="#" class="brand-section" title="Portal BI - Planta Agroindustrial de Manjar">
         <img src="dspace-logo-utc.png" alt="Logo UTC" class="utc-logo-header">
         <div class="brand-info">
-          <h1 class="brand-title">Portal BI Universidad Técnica de Cotopaxi</h1>
+          <h1 class="brand-title">Universidad Técnica de Cotopaxi</h1>
           <p class="brand-subtitle">Maestría en Producción y Operaciones industriales<br>Integración de Sistemas en la Industria 4.0</p>
         </div>
       </a>
@@ -1133,7 +1171,7 @@
           <li><a href="#inicio" class="nav-link active"><i class="fa-solid fa-house"></i> Inicio</a></li>
           <li><a href="#dashboard" class="nav-link"><i class="fa-solid fa-chart-column"></i> Dashboard BI</a></li>
           <li><a href="#kpis" class="nav-link"><i class="fa-solid fa-gauge-high"></i> 10 KPIs Clave</a></li>
-          <li><a href="#proceso" class="nav-link"><i class="fa-solid fa-industry"></i> Planta Manjar</a></li>
+          <li><a href="#informe" class="nav-link"><i class="fa-solid fa-file-lines"></i> Informe Ejecutivo</a></li>
         </ul>
       </nav>
 
@@ -1455,6 +1493,62 @@
 
       </div>
 
+    </section>
+
+    <!-- ==========================================
+         6. INFORME EJECUTIVO DE LOS 10 KPIS
+         ========================================== -->
+    <section class="report-section" id="informe">
+      <div class="section-header-row">
+        <div class="section-title-group">
+          <span class="section-tag">Informe Ejecutivo</span>
+          <h2 class="section-title"><i class="fa-solid fa-file-lines"></i> Informe Ejecutivo de los 10 KPIs</h2>
+          <p class="section-subtitle">Explicación estratégica de la relevancia de cada indicador para la toma de decisiones operativas y gerenciales.</p>
+        </div>
+      </div>
+
+      <div class="report-grid">
+        <article class="report-card">
+          <h3>1. Producción Real Total</h3>
+          <p>Este KPI muestra el volumen físico total producido y es clave para evaluar si la capacidad de la planta se aprovecha correctamente y si el plan de producción se cumple.</p>
+        </article>
+        <article class="report-card">
+          <h3>2. Cumplimiento del Plan</h3>
+          <p>Mide el grado en el que la producción sigue el plan establecido. Permite identificar desvíos tempranos y tomar acciones sobre la programación y la disponibilidad de recursos.</p>
+        </article>
+        <article class="report-card">
+          <h3>3. Tasa de Calidad Conforme</h3>
+          <p>Indica el porcentaje de producto que cumple los estándares de calidad. Es fundamental para minimizar rechazos, mejorar satisfacción del cliente y optimizar costos de retrabajo.</p>
+        </article>
+        <article class="report-card">
+          <h3>4. Porcentaje de Defectos</h3>
+          <p>Refleja la proporción de piezas o lotes defectuosos. Este indicador es esencial para controlar la eficiencia del proceso y reducir desperdicios.</p>
+        </article>
+        <article class="report-card">
+          <h3>5. Disponibilidad Operativa (OEE)</h3>
+          <p>Evalúa cuánto tiempo útil está disponible la línea de producción. Es un pilar del OEE que permite definir mejoras en mantenimiento y tiempos de cambio.</p>
+        </article>
+        <article class="report-card">
+          <h3>6. Costo Total de Producción</h3>
+          <p>Agrega todos los costos asociados a la producción. Su análisis ayuda a medir la rentabilidad y a buscar oportunidades de reducción de gastos.</p>
+        </article>
+        <article class="report-card">
+          <h3>7. Costo Promedio por Kg</h3>
+          <p>Permite conocer el costo unitario real de producción. Sirve para establecer precios, comparar con objetivos y tomar decisiones sobre eficiencia de materias primas.</p>
+        </article>
+        <article class="report-card">
+          <h3>8. Horas Parada No Planificada</h3>
+          <p>Refleja el tiempo perdido por paradas inesperadas. Es crítico para mejorar la confiabilidad de los equipos y reducir interrupciones costosas.</p>
+        </article>
+        <article class="report-card">
+          <h3>9. Desviación Insumo Leche</h3>
+          <p>Monitorea la variación entre el insumo esperado y el real. Ayuda a controlar la materia prima y a detectar fugas de eficiencia en el proceso.</p>
+        </article>
+        <article class="report-card">
+          <h3>10. Consumo Específico Energía</h3>
+          <p>Indica la energía consumida por unidad producida. Es clave para gestionar costos energéticos y avanzar hacia una operación más sostenible.</p>
+        </article>
+      </div>
     </section>
 
   </main>
