@@ -256,6 +256,32 @@
       gap: 0.4rem;
     }
 
+    .mobile-menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: var(--transition-fast);
+    }
+
+    .mobile-menu-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
     .nav-link:hover, .nav-link.active {
       color: #ffffff;
       background: rgba(217, 4, 41, 0.15);
@@ -1115,8 +1141,41 @@
 
     @media (max-width: 768px) {
       .top-bar { display: none; }
-      .nav-menu { display: none; }
+      .header-container { flex-wrap: wrap; gap: 1rem; }
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        right: 1.5rem;
+        left: 1.5rem;
+        background: rgba(7, 17, 30, 0.98);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.45rem;
+        padding: 1rem;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        display: none;
+        z-index: 1001;
+      }
+
+      .nav-menu.show {
+        display: flex;
+      }
+
+      .nav-link {
+        font-size: 0.95rem;
+        padding: 0.9rem 1rem;
+      }
+
+      .mobile-menu-btn { display: inline-flex; }
+      .header-actions { width: 100%; justify-content: space-between; }
       .hero-title { font-size: 1.8rem; }
+      .hero-description { font-size: 0.95rem; }
+      .hero-features-list { grid-template-columns: 1fr; }
+      .hero-section { padding: 1.8rem; }
+      .hero-features-list .feature-pill { font-size: 0.86rem; }
+      .btn { width: 100%; justify-content: center; }
+      .btn-primary { padding: 0.85rem 1rem; }
       .utc-info-grid { grid-template-columns: 1fr; }
       .footer-container { grid-template-columns: 1fr; }
       .powerbi-toolbar { flex-direction: column; align-items: flex-start; }
@@ -1176,6 +1235,9 @@
 
       <!-- Acciones de Encabezado -->
       <div class="header-actions">
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir navegación">
+          <i class="fa-solid fa-bars"></i>
+        </button>
         <button class="theme-toggle-btn" id="theme-toggle-btn" title="Cambiar Tema (Oscuro/Claro)">
           <i class="fa-solid fa-sun"></i>
         </button>
@@ -1202,7 +1264,7 @@
           Sistema Web de Control y Monitoreo de Producción <span class="gradient-text"> de una Empresa de Elaboración de Manjar</span>
         </h2>
         <p class="hero-description">
-          La implementación de este proyecto unifica la integración de sistemas, dashboards analíticos y una plataforma web corporativa, que impulsa la competitividad y el crecimiento de una microempresa dedicada a la elaboración de manjar. Esta solución tecnológica se caracteriza por conectar de manera fluida los procesos internos, permitiendo un monitoreo centralizado y preciso de distintos indicadores de desempeño en la etapa de producción. Al consolidar toda esta información en paneles visuales interactivos, se facilita una toma de decisiones rápida y basada en datos reales para optimizar los recursos, mientras que la integración web proyecta esta eficiencia hacia el exterior, abriendo nuevos canales de venta, facilitando la captación de clientes y fortaleciendo la presencia comercial del negocio en el mercado digital. Este proyecto integra el procesamiento de datos de una base CSV de datos críticos en la empresa de fabricación de Manjar, para luego desarrollar un dashboard con 10 indicadores relevantes a través de Powwer BI, y subido a un entorno web a través de Power BI PRO y GitHub.
+          La implementación de este proyecto unifica la integración de sistemas, dashboards analíticos y una plataforma web corporativa, que impulsa la competitividad y el crecimiento de una microempresa dedicada a la elaboración de manjar. Esta solución tecnológica se caracteriza por conectar de manera fluida los procesos internos, permitiendo un monitoreo centralizado y preciso de distintos indicadores de desempeño en la etapa de producción. Al consolidar toda esta información en paneles visuales interactivos, se facilita una toma de decisiones rápida y basada en datos reales para optimizar los recursos, mientras que la integración web proyecta esta eficiencia hacia el exterior, abriendo nuevos canales de venta, facilitando la captación de clientes y fortaleciendo la presencia comercial del negocio en el mercado digital. Este proyecto integra el procesamiento de datos de una base CSV de datos críticos en la empresa de fabricación de Manjar, para luego desarrollar un dashboard con 10 indicadores relevantes a través de Power BI, y subido a un entorno web a través de Power BI PRO y GitHub.
         </p>
 
         <!-- Píldoras de Características -->
@@ -1410,10 +1472,10 @@
       initClock();
       initThemeToggle();
       initFullscreen();
-      initKpiFilters();
       initInfoTabs();
       initCounterAnimations();
       initSmoothScroll();
+      initMobileMenu();
     });
 
     /* RELOJ EN TIEMPO REAL */
@@ -1558,6 +1620,24 @@
             targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         });
+      });
+    }
+
+    function initMobileMenu() {
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const navMenu = document.querySelector('.nav-menu');
+      if (!mobileMenuBtn || !navMenu) return;
+
+      mobileMenuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+        mobileMenuBtn.setAttribute('aria-expanded', navMenu.classList.contains('show'));
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!navMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+          navMenu.classList.remove('show');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
       });
     }
   </script>
